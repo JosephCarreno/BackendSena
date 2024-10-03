@@ -14,6 +14,17 @@ public class MiPrimeraApiApplication {
 		SpringApplication.run(MiPrimeraApiApplication.class, args);
 	}
 
-
+	@Configuration
+	public static class MyConfiguration(){
+		@Bean
+		public WebMvcConfigurer corsConfigurer(){
+			return new WebMvcConfigurer() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/**").allowedMethods("GET","PUT","POST","DELETE");
+				}
+			};
+		}
+	}
 }
 
