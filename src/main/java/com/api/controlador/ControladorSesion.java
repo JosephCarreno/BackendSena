@@ -61,7 +61,7 @@ public class ControladorSesion {
             throw new ResourseNotFoundException("Recurso no encontrado:" +id);
         }
         sesionEncontrado.setContrasena(sesion.getContrasena());
-        sesionEncontrado.setCodigo(sesion.getCodigo());
+        sesionEncontrado.setUsuario(sesion.getUsuario());
         this.servicioSesion.guardarSesion(sesionEncontrado);
         return ResponseEntity.ok(sesionEncontrado);
 

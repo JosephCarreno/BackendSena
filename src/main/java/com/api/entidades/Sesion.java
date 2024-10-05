@@ -14,9 +14,9 @@ public class Sesion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSesion;
     @Column(nullable = false,length = 15)
-    private String contrasena;
+    private String usuario;
     @Column(unique = true,nullable = false)
-    private Integer codigo;
+    private String contrasena;
     @ManyToOne(targetEntity = Administrador.class)
     @JoinColumn(name = "fk_id_administradores",referencedColumnName = "idAdministrador")
     private Administrador admin;
