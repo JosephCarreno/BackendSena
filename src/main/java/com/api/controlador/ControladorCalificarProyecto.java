@@ -75,7 +75,7 @@ public class ControladorCalificarProyecto {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarCalificarProyecto(@PathVariable Long id){
         CalificarProyecto calificarProyecto = this.servicioCalificarProyecto.buscarCalificarProyectoPorId(id);
-        if(calificarProyecto == null){
+        if(calificarProyecto != null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioCalificarProyecto.eliminarCalificarProyecto(id);

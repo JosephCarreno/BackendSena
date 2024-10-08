@@ -79,7 +79,7 @@ public class ControladorEvaluador {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarEvaluador(@PathVariable Long id){
         Evaluador evaluador = this.servicioEvaluador.buscarEvaluadorPorId(id);
-        if(evaluador == null){
+        if(evaluador != null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioEvaluador.eliminarEvaluador(id);

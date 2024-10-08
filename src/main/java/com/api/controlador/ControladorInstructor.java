@@ -79,7 +79,7 @@ public class ControladorInstructor {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarInstructor(@PathVariable Long id){
         Instructor instructor = this.servicioInstructor.buscarInstructorPorId(id);
-        if(instructor == null){
+        if(instructor != null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioInstructor.eliminarInstructor(id);
