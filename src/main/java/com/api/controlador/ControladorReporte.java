@@ -73,7 +73,7 @@ public class ControladorReporte {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarReporte(@PathVariable Long id){
         Reporte reporte = this.servicioReporte.buscarReportePorId(id);
-        if(reporte != null){
+        if(reporte == null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioReporte.eliminarReporte(id);

@@ -79,7 +79,7 @@ public class ControladorAdministrador {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarAdministrador(@PathVariable Long id){
         Administrador administrador = this.servicioAdministrador.buscarAdministradorPorId(id);
-        if(administrador != null){
+        if(administrador == null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioAdministrador.eliminarAdministrador(id);

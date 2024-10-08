@@ -74,7 +74,7 @@ public class ControladorCriterio {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarCriterio(@PathVariable Long id){
         Criterio criterio = this.servicioCriterio.buscarCriterioPorId(id);
-        if(criterio != null){
+        if(criterio == null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioCriterio.eliminarCriterio(id);

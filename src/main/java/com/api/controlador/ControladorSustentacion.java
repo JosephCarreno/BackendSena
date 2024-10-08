@@ -72,7 +72,7 @@ public class ControladorSustentacion {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarSustentacion(@PathVariable Long id){
         Sustentacion sustentacion = this.servicioSustentacion.buscarSustentacionPorId(id);
-        if(sustentacion != null){
+        if(sustentacion == null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioSustentacion.eliminarSustentacion(id);

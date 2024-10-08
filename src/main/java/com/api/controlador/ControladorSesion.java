@@ -71,7 +71,7 @@ public class ControladorSesion {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarSesion(@PathVariable Long id){
         Sesion sesion = this.servicioSesion.buscarSesionPorId(id);
-        if(sesion != null){
+        if(sesion == null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioSesion.eliminarSesion(id);

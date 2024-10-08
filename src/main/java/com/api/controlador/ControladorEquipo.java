@@ -74,7 +74,7 @@ public class ControladorEquipo {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Map<String, Boolean>> eliminarEquipo(@PathVariable Long id){
         Equipo equipo = this.servicioEquipo.buscarEquipoPorId(id);
-        if(equipo != null){
+        if(equipo == null){
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioEquipo.eliminarEquipo(id);
