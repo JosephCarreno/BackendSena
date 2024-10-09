@@ -1,5 +1,6 @@
 package com.api.controlador;
 
+import com.api.entidades.Administrador;
 import com.api.entidades.Equipo;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioEquipo;
@@ -72,14 +73,15 @@ public class ControladorEquipo {
 
     @DeleteMapping("/equipo/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarEquipo(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarequipo(@PathVariable Long id) {
         Equipo equipo = this.servicioEquipo.buscarEquipoPorId(id);
-        if(equipo != null){
+        if (equipo == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioEquipo.eliminarEquipo(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("Equipo eliminado", Boolean.TRUE);
+        respuesta.put("equipo eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

@@ -1,5 +1,6 @@
 package com.api.controlador;
 
+import com.api.entidades.Administrador;
 import com.api.entidades.Criterio;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioCriterio;
@@ -72,12 +73,13 @@ public class ControladorCriterio {
 
     @DeleteMapping("/criterio/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarCriterio(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarCriterio(@PathVariable Long id) {
         Criterio criterio = this.servicioCriterio.buscarCriterioPorId(id);
-        if(criterio != null){
+        if (criterio == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioCriterio.eliminarCriterio(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("Criterio eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);

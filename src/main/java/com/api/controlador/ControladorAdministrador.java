@@ -1,6 +1,7 @@
 package com.api.controlador;
 
 import com.api.entidades.Administrador;
+import com.api.entidades.Aprendiz;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioAdministrador;
 import org.slf4j.Logger;
@@ -77,12 +78,13 @@ public class ControladorAdministrador {
 
     @DeleteMapping("/administrador/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarAdministrador(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarAdministrador(@PathVariable Long id) {
         Administrador administrador = this.servicioAdministrador.buscarAdministradorPorId(id);
-        if(administrador != null){
+        if (administrador == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioAdministrador.eliminarAdministrador(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("Administrador eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);

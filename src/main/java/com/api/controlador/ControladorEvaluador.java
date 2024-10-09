@@ -1,5 +1,6 @@
 package com.api.controlador;
 
+import com.api.entidades.Administrador;
 import com.api.entidades.Evaluador;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioEvaluador;
@@ -75,16 +76,17 @@ public class ControladorEvaluador {
 
     }
 
-    @DeleteMapping("/evaluador/{id}")
+    @DeleteMapping("/Evaluador/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarEvaluador(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarEvaluador(@PathVariable Long id) {
         Evaluador evaluador = this.servicioEvaluador.buscarEvaluadorPorId(id);
-        if(evaluador != null){
+        if (evaluador == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioEvaluador.eliminarEvaluador(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("Evaluador eliminado", Boolean.TRUE);
+        respuesta.put("Evalaudor eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

@@ -1,5 +1,6 @@
 package com.api.controlador;
 
+import com.api.entidades.Instructor;
 import com.api.entidades.Sustentacion;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioSustentacion;
@@ -70,14 +71,15 @@ public class ControladorSustentacion {
 
     @DeleteMapping("/sustentacion/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarSustentacion(@PathVariable Long id){
-        Sustentacion sustentacion = this.servicioSustentacion.buscarSustentacionPorId(id);
-        if(sustentacion != null){
+    public ResponseEntity<Map<String, Boolean>> eliminarSustentacion(@PathVariable Long id) {
+       Sustentacion sustentacion = this.servicioSustentacion.buscarSustentacionPorId(id);
+        if (sustentacion == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioSustentacion.eliminarSustentacion(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("Sustentacion eliminado", Boolean.TRUE);
+        respuesta.put("sustentacion eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

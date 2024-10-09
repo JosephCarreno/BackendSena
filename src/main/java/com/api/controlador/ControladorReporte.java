@@ -71,14 +71,15 @@ public class ControladorReporte {
 
     @DeleteMapping("/reporte/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarReporte(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarReporte(@PathVariable Long id) {
         Reporte reporte = this.servicioReporte.buscarReportePorId(id);
-        if(reporte != null){
+        if (reporte == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioReporte.eliminarReporte(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("Reporte eliminado", Boolean.TRUE);
+        respuesta.put("Instructor eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

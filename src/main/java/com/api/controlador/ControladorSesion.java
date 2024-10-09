@@ -1,5 +1,6 @@
 package com.api.controlador;
 
+import com.api.entidades.Instructor;
 import com.api.entidades.Sesion;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioSesion;
@@ -69,14 +70,15 @@ public class ControladorSesion {
 
     @DeleteMapping("/sesion/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarSesion(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarSesion(@PathVariable Long id) {
         Sesion sesion = this.servicioSesion.buscarSesionPorId(id);
-        if(sesion != null){
+        if (sesion == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioSesion.eliminarSesion(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("Sesion eliminado", Boolean.TRUE);
+        respuesta.put("sesion eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

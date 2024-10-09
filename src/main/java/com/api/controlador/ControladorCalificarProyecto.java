@@ -1,5 +1,6 @@
 package com.api.controlador;
 
+import com.api.entidades.Administrador;
 import com.api.entidades.CalificarProyecto;
 import com.api.excepciones.ResourseNotFoundException;
 import com.api.servicios.ServicioCalificarProyecto;
@@ -73,14 +74,15 @@ public class ControladorCalificarProyecto {
 
     @DeleteMapping("/calificarProyecto/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Map<String, Boolean>> eliminarCalificarProyecto(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> eliminarCalificarProyecto(@PathVariable Long id) {
         CalificarProyecto calificarProyecto = this.servicioCalificarProyecto.buscarCalificarProyectoPorId(id);
-        if(calificarProyecto != null){
+        if (calificarProyecto == null) {
             throw new ResourseNotFoundException("Id no encontrado: "+id);
         }
         this.servicioCalificarProyecto.eliminarCalificarProyecto(id);
+
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("Calificar proyecto eliminado", Boolean.TRUE);
+        respuesta.put("Calificacion eliminada", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }
